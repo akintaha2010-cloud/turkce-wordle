@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>Türkçe Wordle</title>
+  <meta name="description" content="Her gün yeni bir 5 harfli Türkçe kelime. 6 denemede bul." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%23538d4e'/><text x='50' y='72' font-size='64' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'>Ş</text></svg>" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <button id="help-btn" class="icon" type="button" aria-label="Nasıl oynanır">?</button>
+    <h1>Türkçe Wordle</h1>
+    <button id="stats-btn" class="icon" type="button" aria-label="İstatistikler"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><rect x="3" y="12" width="4" height="9"/><rect x="10" y="7" width="4" height="14"/><rect x="17" y="3" width="4" height="18"/></svg></button>
+  </header>
+
+  <main>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <div id="board" class="board"></div>
+    <div id="keyboard" class="keyboard"></div>
+  </main>
+
+  <dialog id="help">
+    <button class="close" type="button" aria-label="Kapat">×</button>
+    <h2>Nasıl oynanır</h2>
+    <p>Günün kelimesini 6 denemede bul. Her tahmin 5 harfli, anlamlı bir Türkçe kelime olmalı.</p>
+    <p>Her tahminden sonra kareler renk değiştirir:</p>
+    <div class="example"><span class="tile correct">K</span><span class="tile">A</span><span class="tile">L</span><span class="tile">E</span><span class="tile">M</span></div>
+    <p><b>K</b> kelimede var ve doğru yerde.</p>
+    <div class="example"><span class="tile">Ç</span><span class="tile present">İ</span><span class="tile">Ç</span><span class="tile">E</span><span class="tile">K</span></div>
+    <p><b>İ</b> kelimede var ama başka bir yerde.</p>
+    <div class="example"><span class="tile">B</span><span class="tile">U</span><span class="tile">L</span><span class="tile">U</span><span class="tile absent">T</span></div>
+    <p><b>T</b> kelimede yok. Bir harfi iki kez yazdıysan ve kelimede bir tane varsa, biri gri kalır.</p>
+    <p><b>I</b> ile <b>İ</b> farklı harflerdir. Her gün gece yarısı yeni kelime gelir.</p>
+  </dialog>
+
+  <dialog id="stats">
+    <button class="close" type="button" aria-label="Kapat">×</button>
+    <h2>İstatistikler</h2>
+    <div class="numbers">
+      <div><b id="s-played">0</b><span>Oynanan</span></div>
+      <div><b id="s-win">0</b><span>Kazanma %</span></div>
+      <div><b id="s-streak">0</b><span>Seri</span></div>
+      <div><b id="s-max">0</b><span>En uzun seri</span></div>
+    </div>
+    <h3>Tahmin dağılımı</h3>
+    <div id="dist" class="dist"></div>
+    <div id="after" class="after hidden">
+      <div class="next">Sıradaki kelime<b id="countdown">--:--:--</b></div>
+      <button id="share" class="share" type="button">Paylaş</button>
+    </div>
+  </dialog>
+
+  <script type="module" src="js/ui.js"></script>
+</body>
+</html>
